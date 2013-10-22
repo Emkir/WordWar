@@ -25,19 +25,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="260" selection-end="260" vertical-scroll-proportion="-6.230769">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="47" selection-start="755" selection-end="755" vertical-scroll-proportion="-4.2534885">
+            <state line="16" column="0" selection-start="449" selection-end="449" vertical-scroll-proportion="0.3400236">
               <folding />
             </state>
           </provider>
@@ -72,6 +63,7 @@
       <list>
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/js/dictionnary.js" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -253,14 +245,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="260" selection-end="260" vertical-scroll-proportion="-6.230769">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="47" selection-start="755" selection-end="755" vertical-scroll-proportion="-4.2534885">
+        <state line="16" column="0" selection-start="449" selection-end="449" vertical-scroll-proportion="0.3400236">
           <folding />
         </state>
       </provider>
