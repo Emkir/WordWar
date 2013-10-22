@@ -2,7 +2,7 @@
 $maxlength=0;
 $array= array();
 
-$file=file('./ODS6.txt');
+$file=file('./dictionary.txt');
 
 foreach ($file as $line){
 	$line=substr($line,0,-2); //cut \n

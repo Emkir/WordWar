@@ -8,7 +8,26 @@ $(function() {
     var timeRemain;
     var enemyTimeRemain;
 
+    var wordsObject;
     var word;
+
+
+    $.ajax({
+        type: "POST",
+        url: "./dictionary/wordsToArray.php",
+        success: function(msg){
+            wordsObject = jQuery.parseJSON(msg);
+            startGame();
+        }
+    });
+
+    function startGame(){
+        console.log(wordsObject);
+    }
+
+
+
+
 
     function initHP(hp){
         hp = 1000;
@@ -43,14 +62,6 @@ $(function() {
         enemyHealthPoints = enemyHealthPoints - rocketDamages;
     }
 
-    /*$("#test").click(function() {
-        $.ajax({
-            type: "POST",
-            url: "wordsToArray.php",
-            success: function(msg){
-                console.log(msg);
-            }
-        });
-    });*/
+
 
 });
