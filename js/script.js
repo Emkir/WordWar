@@ -32,4 +32,14 @@ $(function() {
 
     }
 
+    /*$("#test").click(function() {
+        $.ajax({
+            type: "POST",
+            url: "wordsToArray.php",
+            success: function(msg){
+                console.log(msg);
+            }
+        });
+    });*/
+
 });
