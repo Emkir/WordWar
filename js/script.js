@@ -2,11 +2,11 @@ $(function() {
     var healthPoints;
     var enemyHealthPoints;
 
-    var timeRemain;
-    var enemyTimeRemain;
-
     var rocketDamages;
     var enemyRocketDamages;
+
+    var timeRemain;
+    var enemyTimeRemain;
 
     var word;
 
@@ -18,8 +18,8 @@ $(function() {
         damages = 500;
     }
 
-    function initTime(timeRemain){
-        timeRemain = 30;
+    function initTime(time){
+        time = 30;
     }
 
     function newRocket(player){
@@ -29,7 +29,18 @@ $(function() {
     function newParty(){
         initHP(healthPoints);
         initHP(enemyHealthPoints);
+        initDamages(rocketDamages);
+        initDamages(enemyRocketDamages);
+        initTime(timeRemain);
+        initTime(enemyTimeRemain);
+    }
 
+    function getDamages(healthPoints,enemyRocketDamages){
+        healthPoints = healthPoints - enemyRocketDamages;
+    }
+
+    function makeDamages(enemyHealthPoints, rocketDamages){
+        enemyHealthPoints = enemyHealthPoints - rocketDamages;
     }
 
     /*$("#test").click(function() {
