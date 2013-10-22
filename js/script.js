@@ -23,7 +23,7 @@ $(function() {
     }
 
     function newRocket(player){
-        
+
     }
 
     function newParty(){
