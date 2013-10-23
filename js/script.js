@@ -8,6 +8,9 @@ $(function() {
     var timeRemain;
     var enemyTimeRemain;
 
+    var timer;
+    var enemyTimer;
+
     var wordsObject;
     var word;
 
@@ -37,7 +40,7 @@ $(function() {
                 $('#wordField').val("");
                 if(inputWord === word){
                     console.log('bon');
-                    soustractTime(5);
+                    soustractTime(5,timer);
                     generateWord(3,15);
                 }
                 else{
@@ -91,6 +94,7 @@ $(function() {
     function newRocket(enemy){
         initDamages(enemy);
         initTime(enemy);
+        launchRocket(enemy);
     }
 
     function generateWord(begin,end){
@@ -99,11 +103,26 @@ $(function() {
         $('#word').html(word);
     }
 
-    function soustractTime(time,enemy){
+    //defilement du temps restant
+    function launchRocket(enemy){
+        if(typeof(enemy)==='undefined'){
+            timer = setInterval (function(){
+                soustractTime(1,timer);
+            },1000);
+        }
+        else{
+            enemyTimer = setInterval (function(){
+                soustractTime(1,enemyTimer,enemy);
+            },1000);
+        }
+    }
+
+    function soustractTime(time,interval,enemy){
         if(typeof(enemy)==='undefined'){
             timeRemain -= time;
             $('#playerTime').html(timeRemain);
             if (timeRemain <= 0){
+                clearInterval(interval);
                 makeDamages(enemyHealthPoints,rocketDamages);
                 newRocket();
             }
@@ -112,19 +131,20 @@ $(function() {
             enemyTimeRemain -= time;
             $('#enemyTime').html(enemyTimeRemain);
             if (enemyTimeRemain <= 0){
+                clearInterval(interval);
                 getDamages(healthPoints,enemyRocketDamages);
                 newRocket(enemy);
             }
         }
     }
 
-    function getDamages(healthPoints,enemyRocketDamages){
-        healthPoints = healthPoints - enemyRocketDamages;
+    function getDamages(hp,enemyRocketDamages){
+        healthPoints = hp - enemyRocketDamages;
         $('#playerHP').html(healthPoints);
     }
 
-    function makeDamages(enemyHealthPoints, rocketDamages){
-        enemyHealthPoints = enemyHealthPoints - rocketDamages;
+    function makeDamages(enemyHP, rocketDamages){
+        enemyHealthPoints = enemyHP - rocketDamages;
         $('#enemyHP').html(enemyHealthPoints);
     }
 
