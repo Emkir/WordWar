@@ -37,6 +37,7 @@ $(function() {
                 $('#wordField').val("");
                 if(inputWord === word){
                     console.log('bon');
+                    soustractTime(5);
                     generateWord(3,15);
                 }
                 else{
@@ -86,16 +87,10 @@ $(function() {
     }
 
 
-    //argument enemy à ne préciser que si c'est une roquette ennemie, sinon laisser vide
+    //argument enemy à ne préciser que si c'est un= missile ennemi, sinon laisser vide
     function newRocket(enemy){
-        if(typeof(enemy)==='undefined'){ //si il n'y a pas d'arguments alors roquette joueur humain
-            initDamages();
-            initTime();
-        }
-        else{
-            initDamages(enemy);
-            initTime(enemy);
-        }
+        initDamages(enemy);
+        initTime(enemy);
     }
 
     function generateWord(begin,end){
@@ -104,12 +99,33 @@ $(function() {
         $('#word').html(word);
     }
 
+    function soustractTime(time,enemy){
+        if(typeof(enemy)==='undefined'){
+            timeRemain -= time;
+            $('#playerTime').html(timeRemain);
+            if (timeRemain <= 0){
+                makeDamages(enemyHealthPoints,rocketDamages);
+                newRocket();
+            }
+        }
+        else{
+            enemyTimeRemain -= time;
+            $('#enemyTime').html(enemyTimeRemain);
+            if (enemyTimeRemain <= 0){
+                getDamages(healthPoints,enemyRocketDamages);
+                newRocket(enemy);
+            }
+        }
+    }
+
     function getDamages(healthPoints,enemyRocketDamages){
         healthPoints = healthPoints - enemyRocketDamages;
+        $('#playerHP').html(healthPoints);
     }
 
     function makeDamages(enemyHealthPoints, rocketDamages){
         enemyHealthPoints = enemyHealthPoints - rocketDamages;
+        $('#enemyHP').html(enemyHealthPoints);
     }
 
 
