@@ -24,6 +24,12 @@ $(function() {
     function startGame(){
         newParty();
 
+        //On focus sur le champ input
+        $("#wordField").focus();
+        $(document).click(function(){
+            $("#wordField").focus();
+        });
+
         //On compare si le mot entré correspond au mot demandé
         $(document).keypress(function(e){
             if(e.which == 13){ //si touche entrée pressée
