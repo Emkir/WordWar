@@ -94,7 +94,9 @@ $(function() {
                     .val(timeRemain)
                     .trigger('change')
                     .knob({
-                        'readOnly' : true
+                        'readOnly' : true,
+                        'min':0,
+                        'max':30
                     });
             });
         }
@@ -143,7 +145,9 @@ $(function() {
                     .val(timeRemain)
                     .trigger('change')
                     .knob({
-                        'readOnly' : true
+                        'readOnly' : true,
+                        'min':0,
+                        'max':30
                     });
             });
             if (timeRemain <= 0){
