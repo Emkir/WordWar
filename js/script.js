@@ -81,7 +81,15 @@ $(function() {
     function initTime(enemy){
         if(typeof(enemy)==='undefined'){
             timeRemain = 30;
-            $('#playerTime').html(timeRemain);
+            //$('#playerTime').html(timeRemain);
+            $(function() {
+                $(".playerTime")
+                    .val(timeRemain)
+                    .trigger('change')
+                    .knob({
+                        'readOnly' : true
+                    });
+            });
         }
         else{
             enemyTimeRemain = 30;
@@ -120,7 +128,15 @@ $(function() {
     function soustractTime(time,interval,enemy){
         if(typeof(enemy)==='undefined'){
             timeRemain -= time;
-            $('#playerTime').html(timeRemain);
+            //$('#playerTime').html(timeRemain);
+            $(function() {
+                $(".playerTime")
+                    .val(timeRemain)
+                    .trigger('change')
+                    .knob({
+                        'readOnly' : true
+                    });
+            });
             if (timeRemain <= 0){
                 clearInterval(interval);
                 makeDamages(enemyHealthPoints,rocketDamages);

@@ -10,15 +10,16 @@
 
         <script src="./js/jquery-2.0.3.min.js"></script>
         <script src="./js/script.js"></script>
+        <script src="js/jquery.knob.js"></script>
 	</head>
 	<body>
         <h3>Joueur</h3>
         PV:<span id="playerHP"></span><br>
-        Temps missile:<span id="playerTime"></span>
+        Temps missile:<input class="playerTime">
 
         <h3>Ennemi</h3>
         PV:<span id="enemyHP"></span><br>
-        Temps missile:<span id="enemyTime"></span>
+        Temps missile:<span id="enemyTime" data-min="0" data-max="30"></span>
 
         <h2 id="word"></h2>
         <input type="text" id="wordField">
