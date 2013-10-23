@@ -14,6 +14,8 @@ $(function() {
     var wordsObject;
     var word;
 
+    var end=false;
+
 
     $.ajax({
         type: "POST",
@@ -38,7 +40,7 @@ $(function() {
 
         //On compare si le mot entré correspond au mot demandé
         $(document).keypress(function(e){
-            if(e.which == 13){ //si touche entrée pressée
+            if(e.which == 13 && end===false){ //si touche entrée pressée
                 var inputWord = $('#wordField').val().toUpperCase();
                 $('#wordField').val("");
                 if(inputWord === word){
@@ -97,9 +99,11 @@ $(function() {
 
     //argument enemy à ne préciser que si c'est un= missile ennemi, sinon laisser vide
     function newRocket(enemy){
-        initDamages(enemy);
-        initTime(enemy);
-        launchRocket(enemy);
+        if (end === false){
+            initDamages(enemy);
+            initTime(enemy);
+            launchRocket(enemy);
+        }
     }
 
     function generateWord(begin,end){
@@ -112,22 +116,22 @@ $(function() {
     function launchRocket(enemy){
         if(typeof(enemy)==='undefined'){
             timer = setInterval (function(){
-                soustractTime(1,timer);
+                soustractTime(1);
             },1000);
         }
         else{
             enemyTimer = setInterval (function(){
-                soustractTime(1,enemyTimer,enemy);
+                soustractTime(1,enemy);
             },1000);
         }
     }
 
-    function soustractTime(time,interval,enemy){
+    function soustractTime(time,enemy){
         if(typeof(enemy)==='undefined'){
             timeRemain -= time;
             $('#playerTime').html(timeRemain);
             if (timeRemain <= 0){
-                clearInterval(interval);
+                clearInterval(timer);
                 makeDamages(enemyHealthPoints,rocketDamages);
                 newRocket();
             }
@@ -136,7 +140,7 @@ $(function() {
             enemyTimeRemain -= time;
             $('#enemyTime').html(enemyTimeRemain);
             if (enemyTimeRemain <= 0){
-                clearInterval(interval);
+                clearInterval(enemyTimer);
                 getDamages(healthPoints,enemyRocketDamages);
                 newRocket(enemy);
             }
@@ -150,14 +154,35 @@ $(function() {
 
     function getDamages(hp,enemyRocketDamages){
         healthPoints = hp - enemyRocketDamages;
-        $('#playerHP').html(healthPoints);
+        if(healthPoints <= 0){
+            end=true;
+            $('#playerHP').html(0);
+            endGame();
+        }
+        else{
+            $('#playerHP').html(healthPoints);
+        }
     }
 
     function makeDamages(enemyHP, rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
-        $('#enemyHP').html(enemyHealthPoints);
+        if(enemyHealthPoints <= 0){
+            end=true;
+            $('#enemyHP').html(0);
+            endGame();
+        }
+        else{
+            $('#enemyHP').html(enemyHealthPoints);
+        }
     }
 
+    function endGame(){
+        clearInterval(timer);
+        clearInterval(enemyTimer);
+        word="";
+        $('#word').html(word);
+        $('#wordField').attr('readonly','readonly');
+    }
 
 
 });
