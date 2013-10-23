@@ -32,6 +32,9 @@ $(function() {
         $(document).click(function(){
             $("#wordField").focus();
         });
+        $('#wordField').bind('paste', function (e) {
+            e.preventDefault();
+        });
 
         //On compare si le mot entré correspond au mot demandé
         $(document).keypress(function(e){
@@ -40,7 +43,7 @@ $(function() {
                 $('#wordField').val("");
                 if(inputWord === word){
                     console.log('bon');
-                    soustractTime(5,timer);
+                    addRocketDamages(10);
                     generateWord(3,15);
                 }
                 else{
@@ -72,9 +75,11 @@ $(function() {
     function initDamages(enemy){
         if(typeof(enemy)==='undefined'){
             rocketDamages = 500;
+            $('#playerDamages').html(rocketDamages);
         }
         else{
             enemyRocketDamages = 500;
+            $('#enemyDamages').html(enemyRocketDamages);
         }
     }
 
@@ -136,6 +141,11 @@ $(function() {
                 newRocket(enemy);
             }
         }
+    }
+
+    function addRocketDamages(damages){
+        rocketDamages += damages;
+        $('#playerDamages').html(rocketDamages);
     }
 
     function getDamages(hp,enemyRocketDamages){
