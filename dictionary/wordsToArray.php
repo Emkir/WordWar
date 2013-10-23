@@ -1,8 +1,6 @@
 <?php
 $array= array();
-
 $file=file('./dictionary.txt');
-
 foreach ($file as $line){
 	$line=substr($line,0,-2); //cut \n
 	$len=strlen($line);
