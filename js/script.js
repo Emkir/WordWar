@@ -1,4 +1,4 @@
-$(function() {
+/* $(function() { */
     var healthPoints;
     var enemyHealthPoints;
 
@@ -22,12 +22,14 @@ $(function() {
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
-            startGame();
+/*             startGame(); */
         }
     });
 
     function startGame(){
         newParty();
+        
+        
 
         //On focus sur le champ input
         $("#wordField").focus();
@@ -205,4 +207,4 @@ $(function() {
     }
 
 
-});
+/* }); */
