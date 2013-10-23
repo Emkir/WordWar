@@ -1,5 +1,4 @@
 <?php
-$maxlength=0;
 $array= array();
 
 $file=file('./dictionary.txt');
@@ -7,9 +6,6 @@ $file=file('./dictionary.txt');
 foreach ($file as $line){
 	$line=substr($line,0,-2); //cut \n
 	$len=strlen($line);
-	if ($len > $maxlength){
-		$maxlength=$len;
-	}
 	if(!array_key_exists($len,$array)){
 		$array[$len]=array();
 	}
