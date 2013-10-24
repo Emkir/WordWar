@@ -4,6 +4,7 @@
 
     var rocketDamages;
     var enemyRocketDamages;
+    var countRocket;
 
     var timeRemain;
     var enemyTimeRemain;
@@ -19,13 +20,12 @@
     var COMBO = 5;
     var actualCombo = 0;
 
-    var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'nbRocket':1,'maxLetters':3},
-                  2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'nbRocket':2,'maxLetters':4},
-                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5,'nbRocket':2,'maxLetters':5}
+    var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'countRocket':1,'maxLetters':3,'description':'description1'},
+                  2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'countRocket':2,'maxLetters':4,'description':'description2'},
+                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5,'countRocket':2,'maxLetters':5,'description':'description3'}
 
     };
-    var actualLevel = 0;
-    console.log(levels);
+    var actualLevel = 1;
 
     $.ajax({
         type: "POST",
@@ -82,8 +82,8 @@
                 $('#wordField').val("");
                 if(inputWord === word){
                     console.log('bon');
-                    addRocketDamages(10);
-                    generateWord(3,15);
+                    addRocketDamages(word.length);
+                    generateWord(3,levels[actualLevel]['maxLetters']);
                 }
                 else{
                     console.log('mauvais');
@@ -95,7 +95,8 @@
     function newParty(){
         initHP();
         initHP('enemy');
-        generateWord(3,15);
+        generateWord(3,levels[actualLevel]['maxLetters']);
+        countRocket = 0;
         newRocket();
         newRocket('enemy');
     }
@@ -113,18 +114,18 @@
 
     function initDamages(enemy){
         if(typeof(enemy)==='undefined'){
-            rocketDamages = 50;
+            rocketDamages = levels[actualLevel]['damages'];
             $('#playerDamages').html(rocketDamages);
         }
         else{
-            enemyRocketDamages = 50;
+            enemyRocketDamages = levels[actualLevel]['enemyDamages'];
             $('#enemyDamages').html(enemyRocketDamages);
         }
     }
 
     function initTime(enemy){
         if(typeof(enemy)==='undefined'){
-            timeRemain = 30;
+            timeRemain = levels[actualLevel]['timeRocket'];
             //$('#playerTime').html(timeRemain);
             $(function() {
                 $(".playerTime")
@@ -138,7 +139,7 @@
             });
         }
         else{
-            enemyTimeRemain = 30;
+            enemyTimeRemain = levels[actualLevel]['enemyTimeRocket'];
             $('#enemyTime').html(enemyTimeRemain);
         }
     }
@@ -161,6 +162,7 @@
     //defilement du temps restant
     function launchRocket(enemy){
         if(typeof(enemy)==='undefined'){
+            countRocket += 1;
             timer = setInterval (function(){
                 soustractTime(1);
             },1000);
@@ -189,7 +191,9 @@
             if (timeRemain <= 0){
                 clearInterval(timer);
                 makeDamages(enemyHealthPoints,rocketDamages);
-                newRocket();
+                if(countRocket < levels[actualLevel]['countRocket']){
+                    newRocket();
+                }
             }
         }
         else{
@@ -211,11 +215,8 @@
     function getDamages(hp,enemyRocketDamages){
         healthPoints = hp - enemyRocketDamages;
         $('#fillP').css("width",healthPoints+"%");
-        if (healthPoints <= 50 && healthPoints >0){
-        	$('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
-        }
         if(healthPoints <= 0){
-            $('#CastleP').css("background","url('/WordWar/img/joueur_3.png')");
+            $('#CastleP').css("background","url('./img/joueur_3.png')");
             end=true;
             $('#playerHP').html(0);
             endGame();
@@ -228,11 +229,8 @@
     function makeDamages(enemyHP, rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
-        if (enemyHealthPoints <= 50 && enemyHealthPoints >0){
-        	$('#CastleE').css("background","url('/WordWar/img/ennemi_2.png')");
-        }
         if(enemyHealthPoints <= 0){
-            $('#CastleE').css("background","url('/WordWar/img/ennemi_3.png')");
+            $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
             endGame();
