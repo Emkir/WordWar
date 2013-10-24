@@ -129,7 +129,7 @@
         }
     }
 
-    //argument enemy à ne préciser que si c'est un= missile ennemi, sinon laisser vide
+    //argument enemy à ne préciser que si c'est un missile ennemi, sinon laisser vide
     function newRocket(enemy){
         if (end === false){
             initDamages(enemy);
@@ -197,7 +197,11 @@
     function getDamages(hp,enemyRocketDamages){
         healthPoints = hp - enemyRocketDamages;
         $('#fillP').css("width",healthPoints+"%");
-        if(healthPoints <= 0){
+        if (healthPoints <= 50){
+        	$('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
+        }
+        else if(healthPoints <= 0){
+        	$('#CastleP').css("background","url('/WordWar/img/joueur_3.png')");
             end=true;
             $('#playerHP').html(0);
             endGame();
@@ -210,7 +214,11 @@
     function makeDamages(enemyHP, rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
-        if(enemyHealthPoints <= 0){
+        if (enemyHealthPoints <= 50){
+        	$('#CastleE').css("background","url('/WordWar/img/ennemi_2.png')");
+        }
+        else if(enemyHealthPoints <= 0){
+            $('#CastleE').css("background","url('/WordWar/img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
             endGame();
@@ -227,6 +235,5 @@
         $('#word').html(word);
         $('#wordField').attr('readonly','readonly');
     }
-
 
  });
