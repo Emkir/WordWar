@@ -16,16 +16,22 @@
 	<body>
 		<img src="img/logo.png" alt="logo" id="logo">
 		<div id="game-content">
+		
 			<span onclick="startGame()" id="start"></span>
-	        <h3>Joueur</h3>
-	        PV:<span id="playerHP"></span><br>
-<!-- 	        Temps missile:<input class="playerTime"><br> -->
-	        Dégats missile:<span id="playerDamages"></span>
-	
-	        <h3>Ennemi</h3>
-	        PV:<span id="enemyHP"></span><br>
-	        Temps missile:<span id="enemyTime" data-min="0" data-max="30"></span><br>
-	        Dégats missile:<span id="enemyDamages"></span>
+			
+			<div id="player">
+		        <h3>Joueur</h3>
+		        PV:<span id="playerHP"></span><br>
+	<!-- 	        Temps missile:<input class="playerTime"><br> -->
+		        Dégats missile:<span id="playerDamages"></span>
+			</div>
+			
+			<div id="ennemy">
+		        <h3>Ennemi</h3>
+		        PV:<span id="enemyHP"></span><br>
+		        Temps missile:<span id="enemyTime" data-min="0" data-max="30"></span><br>
+		        Dégats missile:<span id="enemyDamages"></span>
+			</div>
 	
 	        <h2 id="word"></h2>
 	        <input type="text" id="wordField">

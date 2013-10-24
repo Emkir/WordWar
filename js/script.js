@@ -30,7 +30,11 @@
         newParty();
         
         $("#start").fadeOut(600);
-        $("#logo").css("top","25px");
+        $("#logo").css("top","20px");
+        $("#player").css("display","block");
+        $("#ennemy").css("display","block");
+        $("#word").css("display","block");
+        $("#wordField").css("display","block");
 
         //On focus sur le champ input
         $("#wordField").focus();
