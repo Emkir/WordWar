@@ -1,4 +1,4 @@
-/* $(function() { */
+ $(function() {
     var healthPoints;
     var enemyHealthPoints;
 
@@ -22,9 +22,10 @@
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
-/*             startGame(); */
+            $('#start').click(function(){startGame()});
         }
     });
+
 
     function startGame(){
         newParty();
@@ -212,4 +213,4 @@
     }
 
 
-/* }); */
+ });
