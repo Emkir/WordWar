@@ -43,6 +43,8 @@
         $("#ennemy").fadeIn(600).css("display","block");
         $("#word").fadeIn(600).css("display","block");
         $("#wordField").fadeIn(600).css("display","block");
+        $('#CastleP').transition({ x: '-800px' }, 1800);
+        $('#CastleE').transition({ x: '-1000px' }, 1800);
 
         //On focus sur le champ input
         $("#wordField").focus();
