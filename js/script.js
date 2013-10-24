@@ -16,9 +16,13 @@
 
     var end = false;
 
+    var COMBO = 5;
+    var actualCombo = 0;
+
     var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'nbRocket':1,'maxLetters':3},
                   2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'nbRocket':2,'maxLetters':4},
-                  3:{}
+                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5,'nbRocket':2,'maxLetters':5}
+
     };
     var actualLevel = 0;
     console.log(levels);
@@ -53,7 +57,7 @@
         $('#CastleE').transition({ x: '-1000px' }, 1800);
 
         //On focus sur le champ input
-        $("#wordField").focus();
+        $("#wordField").focus().val("");
         $(document).click(function(){
             $("#wordField").focus();
         });
@@ -200,11 +204,14 @@
         if (healthPoints <= 50 && healthPoints >0){
         	$('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
         }
-        else if(healthPoints <= 0){
-        	$('#CastleP').css("background","url('/WordWar/img/joueur_3.png')");
+        if(healthPoints <= 0){
+            $('#CastleP').css("background","url('/WordWar/img/joueur_3.png')");
             end=true;
             $('#playerHP').html(0);
             endGame();
+        }
+        else if (healthPoints <= 50){
+                $('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -217,11 +224,14 @@
         if (enemyHealthPoints <= 50 && enemyHealthPoints >0){
         	$('#CastleE').css("background","url('/WordWar/img/ennemi_2.png')");
         }
-        else if(enemyHealthPoints <= 0){
+        if(enemyHealthPoints <= 0){
             $('#CastleE').css("background","url('/WordWar/img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
             endGame();
+        }
+        else if (enemyHealthPoints <= 50){
+            $('#CastleE').css("background","url('/WordWar/img/ennemi_2.png')");
         }
         else{
             $('#enemyHP').html(enemyHealthPoints);
