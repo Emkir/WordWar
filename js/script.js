@@ -29,7 +29,8 @@
     function startGame(){
         newParty();
         
-        
+        $("#start").fadeOut(600);
+        $("#logo").css("top","25px");
 
         //On focus sur le champ input
         $("#wordField").focus();

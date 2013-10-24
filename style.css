@@ -61,8 +61,12 @@ body {
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 250px; /*top: 30px*/
+	top: 250px;
 	z-index: 10;
+	
+	-webkit-transition: 2s ease;
+	-moz-transition: 2s ease;
+	transition: 2s ease;
 }
 #start {
 	cursor: pointer;
@@ -92,6 +96,10 @@ body {
 	animation: move-game-content 10s linear infinite;
 }
 @-webkit-keyframes move-game-content {
+	0% { background-position-x: 0;}
+	100% { background-position-x: -800px;}
+}
+@keyframes move-game-content {
 	0% { background-position-x: 0;}
 	100% { background-position-x: -800px;}
 }
