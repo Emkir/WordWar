@@ -14,14 +14,21 @@
     var wordsObject;
     var word;
 
-    var end=false;
+    var end = false;
 
+    var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'nbRocket':1,'maxLetters':3},
+                  2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'nbRocket':2,'maxLetters':4},
+                  3:{}
+    };
+    var actualLevel = 0;
+    console.log(levels);
 
     $.ajax({
         type: "POST",
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
+            console.log(wordsObject);
             $('#start').click(function(){startGame()});
         }
     });
