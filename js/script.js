@@ -16,9 +16,13 @@
 
     var end = false;
 
+    var COMBO = 5;
+    var actualCombo = 0;
+
     var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'nbRocket':1,'maxLetters':3},
                   2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'nbRocket':2,'maxLetters':4},
-                  3:{}
+                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5,'nbRocket':2,'maxLetters':5}
+
     };
     var actualLevel = 0;
     console.log(levels);
@@ -53,7 +57,7 @@
         $('#CastleE').transition({ x: '-1000px' }, 1800);
 
         //On focus sur le champ input
-        $("#wordField").focus();
+        $("#wordField").focus().val("");
         $(document).click(function(){
             $("#wordField").focus();
         });
