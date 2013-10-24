@@ -82,7 +82,7 @@ body {
 	top: 300px;
 	width: 168px;
 	height: 72px;
-	background: url("../img/start.svg");
+	background: url("../img/start.png");
 }
 
 #game-content {
@@ -94,6 +94,7 @@ body {
 	border-radius: 5px;
 	background: url("../img/fond.png") repeat-x;
 	box-shadow: 0px 10px 20px rgba(0,0,0,0.7);
+	overflow: hidden;
 }
 
 #player {
@@ -167,14 +168,13 @@ body {
 	font-size: 2.5em;
 }
 
-
 #word {
 	display: none;
 	margin: 0 auto;
 	position: absolute;
 	right: 0;
 	left: 0;
-	top: 20px;
+	top: 10px;
 	text-align: center;
 	font-family: "Bebas", sans-serif;
 	font-size: 4em;
@@ -187,8 +187,67 @@ body {
 	right: 0;
 	bottom: 40px;
 	height: 40px;
-	font-size: 2em;
+	font-size: 1.2em;
 	text-align: center;
 	width: 35%;
     text-transform:uppercase;
+<<<<<<< HEAD
 }
+=======
+}
+
+#popup {
+	width: 60%;
+	height: 300px;
+	background: rgba(255,255,255,0.9);
+	margin: 0 auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 80px;
+	border-radius: 5px;
+	display: none;
+}
+#popup h2 {
+	text-align: center;
+	font-family: "Bebas", sans-serif;
+	font-size: 2em;
+	margin: 20px 0;
+}
+#popup p {
+	font-family: 'Oxygen', sans-serif;
+	font-size: 0.9em;
+	width: 90%;
+	margin: 0 auto;
+	line-height: 1.4em;
+}
+#level-start {
+	cursor: pointer;
+	margin: 0 auto;
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	width: 100px;
+	z-index: 100;
+
+}
+
+#CastleP {
+	background: url("../img/joueur_1.png");
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	bottom: 20px;
+	left: 800px;
+}
+#CastleE {
+	background: url("../img/ennemi_1.png");
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	bottom: 20px;
+	left: 1600px;
+}
+>>>>>>> 88c184d8dd1f9fbb76d9a2ca35c818d1b3486b8f

@@ -28,22 +28,29 @@
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
-            console.log(wordsObject);
-            $('#start').click(function(){startGame()});
+            $('#level-start').click(function(){startGame()});
+            $('#start').click(function(){start()});
         }
     });
     
     $("#game-content").animate({"backgroundPosition":'-1800px 0px'},3800,'linear');
 
+	function start() {
+		$("#start").fadeOut(600);
+        $("#logo").fadeIn(600).css("top","20px");
+        $("#popup").fadeIn(600);
+	}
+	
     function startGame(){
         newParty();
         
-        $("#start").fadeOut(600);
-        $("#logo").fadeIn(600).css("top","20px");
+        $("#popup").fadeOut(600);
         $("#player").fadeIn(600).css("display","block");
         $("#ennemy").fadeIn(600).css("display","block");
         $("#word").fadeIn(600).css("display","block");
         $("#wordField").fadeIn(600).css("display","block");
+        $('#CastleP').transition({ x: '-800px' }, 1800);
+        $('#CastleE').transition({ x: '-1000px' }, 1800);
 
         //On focus sur le champ input
         $("#wordField").focus();
