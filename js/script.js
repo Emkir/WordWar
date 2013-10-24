@@ -206,13 +206,13 @@
         healthPoints = hp - enemyRocketDamages;
         $('#fillP').css("width",healthPoints+"%");
         if(healthPoints <= 0){
-            $('#CastleP').css("background","url('/WordWar/img/joueur_3.png')");
+            $('#CastleP').css("background","url('./img/joueur_3.png')");
             end=true;
             $('#playerHP').html(0);
             endGame();
         }
         else if (healthPoints <= 50){
-            $('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
+            $('#CastleP').css("background","url('./img/joueur_2.png')");
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -223,13 +223,13 @@
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
         if(enemyHealthPoints <= 0){
-            $('#CastleE').css("background","url('/WordWar/img/ennemi_3.png')");
+            $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
             endGame();
         }
         else if (enemyHealthPoints <= 50){
-            $('#CastleE').css("background","url('/WordWar/img/ennemi_2.png')");
+            $('#CastleE').css("background","url('./img/ennemi_2.png')");
         }
         else{
             $('#enemyHP').html(enemyHealthPoints);
