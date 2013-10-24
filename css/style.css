@@ -82,7 +82,7 @@ body {
 	top: 300px;
 	width: 168px;
 	height: 72px;
-	background: url("../img/start.svg");
+	background: url("../img/start.png");
 }
 
 #game-content {
@@ -167,14 +167,13 @@ body {
 	font-size: 2.5em;
 }
 
-
 #word {
 	display: none;
 	margin: 0 auto;
 	position: absolute;
 	right: 0;
 	left: 0;
-	top: 20px;
+	top: 10px;
 	text-align: center;
 	font-family: "Bebas", sans-serif;
 	font-size: 4em;
@@ -193,4 +192,40 @@ body {
     text-transform:uppercase;
 }
 
+#popup {
+	width: 60%;
+	height: 300px;
+	background: rgba(255,255,255,0.9);
+	margin: 0 auto;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 80px;
+	border-radius: 5px;
+	display: none;
+}
+#popup h2 {
+	text-align: center;
+	font-family: "Bebas", sans-serif;
+	font-size: 2em;
+	margin: 20px 0;
+}
+#popup p {
+	font-family: 'Oxygen', sans-serif;
+	font-size: 0.9em;
+	width: 90%;
+	margin: 0 auto;
+	line-height: 1.4em;
+}
+#level-start {
+	cursor: pointer;
+	margin: 0 auto;
+	display: block;
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 10px;
+	width: 100px;
+	z-index: 100;
 
+}
