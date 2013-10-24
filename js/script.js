@@ -197,7 +197,7 @@
     function getDamages(hp,enemyRocketDamages){
         healthPoints = hp - enemyRocketDamages;
         $('#fillP').css("width",healthPoints+"%");
-        if (healthPoints <= 50){
+        if (healthPoints <= 50 && healthPoints >0){
         	$('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
         }
         else if(healthPoints <= 0){
@@ -214,7 +214,7 @@
     function makeDamages(enemyHP, rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
-        if (enemyHealthPoints <= 50){
+        if (enemyHealthPoints <= 50 && enemyHealthPoints >0){
         	$('#CastleE').css("background","url('/WordWar/img/ennemi_2.png')");
         }
         else if(enemyHealthPoints <= 0){
