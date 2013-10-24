@@ -103,6 +103,33 @@ body {
 	left: 50px;
 	display: none;
 }
+#lifeP {
+	width: 150px;
+	height: 40px;
+	background: #942121;
+	position: absolute;
+	top: -280px;
+	left: 10px;
+	border-radius: 5px;
+	border: 2px solid white;
+}
+#fillP {
+	width: 100%;
+	height: 100%;
+	background: red;
+	
+	-webkit-transition: 2s ease;
+	-moz-transition: 2s ease;
+	transition: 2s ease;
+}
+#lifeP:before {
+	content: "Pv";
+	position: absolute;
+	left: -45px;
+	line-height: 40px;
+	font-family: "Bebas",sans-serif;
+	font-size: 2.5em;
+}
 
 #ennemy {
 	background: blue;
@@ -111,6 +138,35 @@ body {
 	right: 50px;
 	display: none;
 }
+#lifeE {
+	width: 150px;
+	height: 40px;
+	background: #1c1c91;
+	position: absolute;
+	top: -280px;
+	right: 10px;
+	border-radius: 5px;
+	border: 2px solid white;
+}
+#fillE {
+	width: 100%;
+	height: 100%;
+	background: blue;
+	float: right;
+	
+	-webkit-transition: 2s ease;
+	-moz-transition: 2s ease;
+	transition: 2s ease;
+}
+#lifeE:after {
+	content: "Pv";
+	position: absolute;
+	right: -45px;
+	line-height: 40px;
+	font-family: "Bebas",sans-serif;
+	font-size: 2.5em;
+}
+
 
 #word {
 	display: none;
@@ -118,12 +174,11 @@ body {
 	position: absolute;
 	right: 0;
 	left: 0;
-	top: 40px;
+	top: 20px;
 	text-align: center;
 	font-family: "Bebas", sans-serif;
 	font-size: 4em;
 }
-
 #wordField {
 	display: none;
 	position: absolute;
@@ -138,10 +193,4 @@ body {
     text-transform:uppercase;
 }
 
-#lifeP {
-	width: 100px;
-	height: 40px;
-}
-#lifeE {
-	
-}
+

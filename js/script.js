@@ -26,17 +26,17 @@
         }
     });
     
-    $("#game-content").animate({"backgroundPosition":'-1800px 0px'}, 1800);
+    $("#game-content").animate({"backgroundPosition":'-1800px 0px'},3800,'linear');
 
     function startGame(){
         newParty();
         
         $("#start").fadeOut(600);
-        $("#logo").css("top","20px");
-        $("#player").css("display","block");
-        $("#ennemy").css("display","block");
-        $("#word").css("display","block");
-        $("#wordField").css("display","block");
+        $("#logo").fadeIn(600).css("top","20px");
+        $("#player").fadeIn(600).css("display","block");
+        $("#ennemy").fadeIn(600).css("display","block");
+        $("#word").fadeIn(600).css("display","block");
+        $("#wordField").fadeIn(600).css("display","block");
 
         //On focus sur le champ input
         $("#wordField").focus();
@@ -74,22 +74,22 @@
 
     function initHP(enemy){
         if(typeof(enemy)==='undefined'){
-            healthPoints = 1000;
+            healthPoints = 100;
             $('#playerHP').html(healthPoints);
         }
         else{
-            enemyHealthPoints = 1000;
+            enemyHealthPoints = 100;
             $('#enemyHP').html(enemyHealthPoints);
         }
     }
 
     function initDamages(enemy){
         if(typeof(enemy)==='undefined'){
-            rocketDamages = 500;
+            rocketDamages = 50;
             $('#playerDamages').html(rocketDamages);
         }
         else{
-            enemyRocketDamages = 500;
+            enemyRocketDamages = 50;
             $('#enemyDamages').html(enemyRocketDamages);
         }
     }
@@ -114,7 +114,6 @@
             $('#enemyTime').html(enemyTimeRemain);
         }
     }
-
 
     //argument enemy à ne préciser que si c'est un= missile ennemi, sinon laisser vide
     function newRocket(enemy){
@@ -183,6 +182,7 @@
 
     function getDamages(hp,enemyRocketDamages){
         healthPoints = hp - enemyRocketDamages;
+        $('#fillP').css("width",healthPoints+"%");
         if(healthPoints <= 0){
             end=true;
             $('#playerHP').html(0);
@@ -195,6 +195,7 @@
 
     function makeDamages(enemyHP, rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
+        $('#fillE').css("width",enemyHealthPoints+"%");
         if(enemyHealthPoints <= 0){
             end=true;
             $('#enemyHP').html(0);
