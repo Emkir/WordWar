@@ -136,8 +136,7 @@
 
     //argument enemy à ne préciser que si c'est un missile ennemi, sinon laisser vide
     function newRocket(enemy){
-        if (end === false && countRocket < levels[actualLevel]['countRocket']){
-            countRocket += 1;
+        if (end === false){
             initDamages(enemy);
             initTime(enemy);
             launchRocket(enemy);
@@ -153,6 +152,7 @@
     //defilement du temps restant
     function launchRocket(enemy){
         if(typeof(enemy)==='undefined'){
+            countRocket += 1;
             timer = setInterval (function(){
                 soustractTime(1);
             },1000);
@@ -181,7 +181,9 @@
             if (timeRemain <= 0){
                 clearInterval(timer);
                 makeDamages(enemyHealthPoints,rocketDamages);
-                newRocket();
+                if(countRocket < levels[actualLevel]['countRocket']){
+                    newRocket();
+                }
             }
         }
         else{
@@ -203,9 +205,6 @@
     function getDamages(hp,enemyRocketDamages){
         healthPoints = hp - enemyRocketDamages;
         $('#fillP').css("width",healthPoints+"%");
-        if (healthPoints <= 50 && healthPoints >0){
-        	$('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
-        }
         if(healthPoints <= 0){
             $('#CastleP').css("background","url('/WordWar/img/joueur_3.png')");
             end=true;
@@ -213,7 +212,7 @@
             endGame();
         }
         else if (healthPoints <= 50){
-                $('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
+            $('#CastleP').css("background","url('/WordWar/img/joueur_2.png')");
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -223,9 +222,6 @@
     function makeDamages(enemyHP, rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
-        if (enemyHealthPoints <= 50 && enemyHealthPoints >0){
-        	$('#CastleE').css("background","url('/WordWar/img/ennemi_2.png')");
-        }
         if(enemyHealthPoints <= 0){
             $('#CastleE').css("background","url('/WordWar/img/ennemi_3.png')");
             end=true;
