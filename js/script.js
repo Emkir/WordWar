@@ -43,6 +43,7 @@
 		$("#start").fadeOut(600);
         $("#logo").fadeIn(600).css("top","20px");
         $("#popup").fadeIn(600);
+
 	}
 	
     function startGame(){
