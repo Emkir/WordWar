@@ -4,6 +4,7 @@
 
     var rocketDamages;
     var enemyRocketDamages;
+    var countRocket;
 
     var timeRemain;
     var enemyTimeRemain;
@@ -19,13 +20,12 @@
     var COMBO = 5;
     var actualCombo = 0;
 
-    var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'nbRocket':1,'maxLetters':3},
-                  2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'nbRocket':2,'maxLetters':4},
-                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5,'nbRocket':2,'maxLetters':5}
+    var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'countRocket':1,'maxLetters':3,'description':'description1'},
+                  2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'countRocket':2,'maxLetters':4,'description':'description2'},
+                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5,'countRocket':2,'maxLetters':5,'description':'description3'}
 
     };
-    var actualLevel = 0;
-    console.log(levels);
+    var actualLevel = 1;
 
     $.ajax({
         type: "POST",
@@ -72,8 +72,8 @@
                 $('#wordField').val("");
                 if(inputWord === word){
                     console.log('bon');
-                    addRocketDamages(10);
-                    generateWord(3,15);
+                    addRocketDamages(word.length);
+                    generateWord(3,levels[actualLevel]['maxLetters']);
                 }
                 else{
                     console.log('mauvais');
@@ -85,7 +85,8 @@
     function newParty(){
         initHP();
         initHP('enemy');
-        generateWord(3,15);
+        generateWord(3,levels[actualLevel]['maxLetters']);
+        countRocket = 0;
         newRocket();
         newRocket('enemy');
     }
@@ -103,18 +104,18 @@
 
     function initDamages(enemy){
         if(typeof(enemy)==='undefined'){
-            rocketDamages = 50;
+            rocketDamages = levels[actualLevel]['damages'];
             $('#playerDamages').html(rocketDamages);
         }
         else{
-            enemyRocketDamages = 50;
+            enemyRocketDamages = levels[actualLevel]['enemyDamages'];
             $('#enemyDamages').html(enemyRocketDamages);
         }
     }
 
     function initTime(enemy){
         if(typeof(enemy)==='undefined'){
-            timeRemain = 30;
+            timeRemain = levels[actualLevel]['timeRocket'];
             //$('#playerTime').html(timeRemain);
             $(function() {
                 $(".playerTime")
@@ -128,14 +129,15 @@
             });
         }
         else{
-            enemyTimeRemain = 30;
+            enemyTimeRemain = levels[actualLevel]['enemyTimeRocket'];
             $('#enemyTime').html(enemyTimeRemain);
         }
     }
 
     //argument enemy à ne préciser que si c'est un missile ennemi, sinon laisser vide
     function newRocket(enemy){
-        if (end === false){
+        if (end === false && countRocket < levels[actualLevel]['countRocket']){
+            countRocket += 1;
             initDamages(enemy);
             initTime(enemy);
             launchRocket(enemy);
