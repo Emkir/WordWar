@@ -52,12 +52,11 @@ table {
 
 @font-face {
     font-family: Bebas;
-    src: url(font/BebasNeue.ttf);
+    src: url(../font/BebasNeue.ttf);
 } 
 
 body {
-	background: url("img/debut_dark.png");
-
+	background: url("../img/debut_dark.png");
 }
 #logo {
 	width: 400px;
@@ -83,7 +82,7 @@ body {
 	top: 300px;
 	width: 168px;
 	height: 72px;
-	background: url("img/start.svg");
+	background: url("../img/start.svg");
 }
 
 #game-content {
@@ -93,7 +92,7 @@ body {
 	width: 800px;
 	margin: 200px auto;
 	border-radius: 5px;
-	background: url("img/fond.jpg") center center repeat-x;
+	background: url("../img/fond.jpg") center center repeat-x;
 	background-size: 100%;
 	box-shadow: 0px 10px 20px rgba(0,0,0,0.7);
 	
@@ -149,4 +148,5 @@ body {
 	font-size: 2em;
 	text-align: center;
 	width: 30%;
+    text-transform:uppercase;
 }
