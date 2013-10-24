@@ -10,7 +10,9 @@
 
         <script src="./js/jquery-2.0.3.min.js"></script>
         <script src="./js/script.js"></script>
-        <script src="js/jquery.knob.js"></script>
+        <script src="./js/jquery.knob.js"></script>
+        <script src="./js/jquery.backgroundpos.min.js"></script>
+        
 	</head>
 	
 	<body>
@@ -20,6 +22,7 @@
 			<span onclick="startGame()" id="start"></span>
 			
 			<div id="player">
+				<div id="lifeP"></div>
 		        <h3>Joueur</h3>
 		        PV:<span id="playerHP"></span><br>
 	<!-- 	        Temps missile:<input class="playerTime"><br> -->
@@ -27,6 +30,7 @@
 			</div>
 			
 			<div id="ennemy">
+				<div id="lifeE"></div>
 		        <h3>Ennemi</h3>
 		        PV:<span id="enemyHP"></span><br>
 		        Temps missile:<span id="enemyTime" data-min="0" data-max="30"></span><br>

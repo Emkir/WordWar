@@ -92,21 +92,8 @@ body {
 	width: 800px;
 	margin: 200px auto;
 	border-radius: 5px;
-	background: url("../img/fond.jpg") center center repeat-x;
-	background-size: 100%;
+	background: url("../img/fond.png") repeat-x;
 	box-shadow: 0px 10px 20px rgba(0,0,0,0.7);
-	
-	-webkit-animation: move-game-content 10s linear infinite;
-	-moz-animation: move-game-content 10s linear infinite;
-	animation: move-game-content 10s linear infinite;
-}
-@-webkit-keyframes move-game-content {
-	0% { background-position-x: 0;}
-	100% { background-position-x: -800px;}
-}
-@keyframes move-game-content {
-	0% { background-position: 0 0;}
-	100% { background-position: -800px 0;}
 }
 
 #player {
@@ -149,4 +136,12 @@ body {
 	text-align: center;
 	width: 30%;
     text-transform:uppercase;
+}
+
+#lifeP {
+	width: 100px;
+	height: 40px;
+}
+#lifeE {
+	
 }

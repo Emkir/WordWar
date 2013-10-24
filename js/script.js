@@ -22,9 +22,10 @@
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
-/*             startGame(); */
         }
     });
+    
+    $("#game-content").animate({"backgroundPosition":'-1800px 0px'});
 
     function startGame(){
         newParty();
