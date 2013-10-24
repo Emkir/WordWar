@@ -26,8 +26,7 @@
         }
     });
     
-    $("#game-content").animate({"backgroundPosition":'-1800px 0px'});
-
+    $("#game-content").animate({"backgroundPosition":'-1800px 0px'}, 1800);
 
     function startGame(){
         newParty();
