@@ -202,11 +202,13 @@ body {
 	width: 100px;
 	position: absolute;
 	top: 0;
+	z-index: 9;
 }
 #contain-canonE img:nth-child(2) {
 	width: 100px;
 	position: absolute;
 	top: 8px;
+	z-index: 10;
 }
 #contain-canonE img:last-child {
 	position: absolute;
