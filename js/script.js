@@ -34,7 +34,7 @@
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
-            $('#level-start').click(function(){console.log('toto');startGame()});
+            $('#level-start').click(function(){startGame()});
             $('#start').click(function(){start()});
         }
     });
@@ -116,9 +116,7 @@
     function newParty(){
         initHP();
         initHP('enemy');
-        console.log(healthPoints+' '+enemyHealthPoints);
         setTimeout(function(){
-            console.log('FEU');
             generateWord(3,levels[actualLevel]['maxLetters']);
             countRocket = 0;
             newRocket();
