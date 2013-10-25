@@ -35,7 +35,7 @@
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
             $('#level-start').click(function(){startGame()});
-            $('#start').show().click(function(){start()});
+            $('#start').fadeIn("slow").click(function(){start()});
         }
     });
     
