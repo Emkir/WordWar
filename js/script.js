@@ -5,12 +5,14 @@
     var rocketDamages;
     var enemyRocketDamages;
     var countRocket;
+    var enemyRocket = [];
+    var firstRocket = 0;
 
     var timeRemain;
     var enemyTimeRemain;
 
     var timer;
-    var enemyTimer;
+    var enemyTimer = [];
 
     var wordsObject;
     var word;
@@ -22,7 +24,7 @@
 
     var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'countRocket':1,'maxLetters':3,'description':'description1'},
                   2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'countRocket':2,'maxLetters':4,'description':'description2'},
-                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5,'countRocket':2,'maxLetters':5,'description':'description3'}
+                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5000,'countRocket':2,'maxLetters':5,'description':'description3'}
 
     };
     var actualLevel = 1;
@@ -72,10 +74,19 @@
                 $('#wordField').val("");
                 if(inputWord === word){
                     console.log('bon');
+                    actualCombo ++;
+                    if(actualCombo % COMBO == 0){
+                        console.log('toto');
+                        clearInterval(enemyTimer[firstRocket]);
+                        firstRocket += 1;
+                        newRocket('enemy');
+                        //effacer le boulet de l'affichage
+                    }
                     addRocketDamages(word.length);
                     generateWord(3,levels[actualLevel]['maxLetters']);
                 }
                 else{
+                    actualCombo = 0;
                     console.log('mauvais');
                 }
             }
@@ -139,18 +150,31 @@
         if (end === false){
             initDamages(enemy);
             initTime(enemy);
-            launchRocket(enemy);
+            if(typeof(enemy)!=='undefined'){
+                enemyRocket.push({'damages':enemyRocketDamages,'time':enemyTimeRemain});
+                if(typeof(levels[actualLevel]['betweenRockets'])!=='undefined' && end==false){
+                    setTimeout(function(){newRocket('enemy')},levels[actualLevel]['betweenRockets'])
+                }
+                launchRocket(enemy,enemyRocket.length-1);
+            }
+            else{
+                launchRocket(enemy);
+            }
         }
     }
 
     function generateWord(begin,end){
         var wordLength = Math.floor(Math.random() * (end - begin + 1)) + begin;
+        var lastWord = word;
         word = wordsObject[wordLength][Math.floor(Math.random()*wordsObject[wordLength].length)];
+        if(word == lastWord){
+            generateWord(begin,end);
+        }
         $('#word').html(word);
     }
 
     //defilement du temps restant
-    function launchRocket(enemy){
+    function launchRocket(enemy,rocketKey){
         if(typeof(enemy)==='undefined'){
             countRocket += 1;
             timer = setInterval (function(){
@@ -158,13 +182,13 @@
             },1000);
         }
         else{
-            enemyTimer = setInterval (function(){
-                soustractTime(1,enemy);
+            enemyTimer[rocketKey] = setInterval (function(){
+                soustractTime(1,enemy,rocketKey);
             },1000);
         }
     }
 
-    function soustractTime(time,enemy){
+    function soustractTime(time,enemy,rocketKey){
         if(typeof(enemy)==='undefined'){
             timeRemain -= time;
             //$('#playerTime').html(timeRemain);
@@ -187,11 +211,13 @@
             }
         }
         else{
-            enemyTimeRemain -= time;
-            $('#enemyTime').html(enemyTimeRemain);
-            if (enemyTimeRemain <= 0){
-                clearInterval(enemyTimer);
-                getDamages(healthPoints,enemyRocketDamages);
+            enemyRocket[rocketKey]['time'] -= time;
+            console.log(rocketKey+':'+enemyRocket[rocketKey]['time']);
+            $('#enemyTime').html(enemyRocket[rocketKey]['time']);
+            if (enemyRocket[rocketKey]['time'] <= 0){
+                clearInterval(enemyTimer[rocketKey]);
+                getDamages(healthPoints,enemyRocket[rocketKey]['damages']);
+                firstRocket += 1;
                 newRocket(enemy);
             }
         }
@@ -238,10 +264,12 @@
 
     function endGame(){
         clearInterval(timer);
-        clearInterval(enemyTimer);
+        for(i=0; i<enemyTimer.length;i++){
+            clearInterval(enemyTimer[i]);
+        }
         word="";
         $('#word').html(word);
-        $('#wordField').attr('readonly','readonly');
+        $('#wordField').attr('readonly','readonly').val('');
     }
 
  });
