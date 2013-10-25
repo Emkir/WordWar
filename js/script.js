@@ -5,22 +5,22 @@
     var rocketDamages;
     var enemyRocketDamages;
     var countRocket;
-    var enemyRocket = [];
-    var firstRocket = 0;
+    var enemyRocket;
+    var firstRocket;
 
     var timeRemain;
     var enemyTimeRemain;
 
     var timer;
-    var enemyTimer = [];
+    var enemyTimer;
 
     var wordsObject;
     var word;
 
-    var end = false;
+    var end;
 
     var COMBO = 5;
-    var actualCombo = 0;
+    var actualCombo;
 
     var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'countRocket':1,'maxLetters':3,'description':'description1'},
                   2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'countRocket':2,'maxLetters':4,'description':'description2'},
@@ -115,13 +115,20 @@
     }
 
     function newParty(){
+        end = false;
+        actualCombo = 0;
+        enemyTimer = [];
+        countRocket = 0;
+        enemyRocket = [];
+        firstRocket = 0;
+        $('#CastleP').css("background","url('./img/joueur_1.png')");
+        $('#CastleE').css("background","url('./img/ennemi_1.png')");
         initHP();
         initHP('enemy');
         $('#fillP').css("width",healthPoints+"%");
         $('#fillE').css("width",enemyHealthPoints+"%");
         setTimeout(function(){
             generateWord(3,levels[actualLevel]['maxLetters']);
-            countRocket = 0;
             newRocket();
             newRocket('enemy');
         },4000);
@@ -262,9 +269,10 @@
             $('#CastleP').css("background","url('./img/joueur_3.png')");
             end=true;
             $('#playerHP').html(0);
+            endGame();
             $('#popup').fadeIn('');
             $('#popup p').html('Perdu');
-            endGame();
+            $('#popup img').attr('src','img/replay.png').attr('alt','replay-level');
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -281,9 +289,9 @@
             $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
+            endGame();
             $('#popup').fadeIn('');
             $('#popup p').html('Gagne');
-            endGame();
         }
         else{
             $('#enemyHP').html(enemyHealthPoints);
