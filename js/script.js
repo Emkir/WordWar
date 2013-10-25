@@ -34,7 +34,7 @@
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
-            $('#level-start').click(function(){startGame()});
+            $('#level-start').click(function(){console.log('toto');startGame()});
             $('#start').click(function(){start()});
         }
     });
@@ -68,7 +68,17 @@
         $("#wordField").fadeIn(600).css("display","block");
         $('#CastleP').transition({ x: '-800px' }, 3800,'ease');
         $('#CastleE').transition({ x: '-400px' }, 3800,'ease');
-        $('#bouletP').transition({ x: -40 }).transition({ y: 40 }).transition({ x: 0 }).transition({ y: 0 });
+        $('#bouletP')
+        	.transition({ x: 150, y: -100, duration: 2750, delay: 4000})
+        	.transition({ x: 200, y: -170, duration: 2750})
+        	.transition({ x: 350, y: -100, duration: 2750})
+        	.transition({ x: 450, y: 0, duration: 2750});
+        	
+        $('#bouletE')
+        	.transition({ x: 450, y: -100, duration: 2750, delay: 4000})
+        	.transition({ x: 350, y: -170, duration: 2750})
+        	.transition({ x: 200, y: -100, duration: 2750})
+        	.transition({ x: 150, y: 0, duration: 2750});
 
         //On focus sur le champ input
         $("#wordField").focus().val("");
@@ -88,7 +98,6 @@
                     console.log('bon');
                     actualCombo ++;
                     if(actualCombo % COMBO == 0){
-                        console.log('toto');
                         clearInterval(enemyTimer[firstRocket]);
                         firstRocket += 1;
                         newRocket('enemy');
@@ -108,10 +117,14 @@
     function newParty(){
         initHP();
         initHP('enemy');
-        generateWord(3,levels[actualLevel]['maxLetters']);
-        countRocket = 0;
-        newRocket();
-        newRocket('enemy');
+        console.log(healthPoints+' '+enemyHealthPoints);
+        setTimeout(function(){
+            console.log('FEU');
+            generateWord(3,levels[actualLevel]['maxLetters']);
+            countRocket = 0;
+            newRocket();
+            newRocket('enemy');
+        },4000);
     }
 
     function initHP(enemy){
@@ -224,7 +237,6 @@
         }
         else{
             enemyRocket[rocketKey]['time'] -= time;
-            console.log(rocketKey+':'+enemyRocket[rocketKey]['time']);
             $('#enemyTime').html(enemyRocket[rocketKey]['time']);
             if (enemyRocket[rocketKey]['time'] <= 0){
                 clearInterval(enemyTimer[rocketKey]);
@@ -251,9 +263,8 @@
             end=true;
             $('#playerHP').html(0);
             $('#popup').fadeIn('');
-            $('#popup p').html('Rejouer');
+            $('#popup p').html('Perdu');
             endGame();
-            newParty();
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -270,6 +281,8 @@
             $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
+            $('#popup').fadeIn('');
+            $('#popup p').html('Gagne');
             endGame();
         }
         else{
