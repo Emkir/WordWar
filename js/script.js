@@ -36,9 +36,10 @@
             wordsObject = jQuery.parseJSON(msg);
             $('#level-start').click(function(){startGame()});
             $('#start').fadeIn("slow").click(function(){start()});
+            $('#next-level').click(function(){nextLevel()});
         }
     });
-    
+
 	$("#level-start").click(function(){
 	
 	    var $this = $(this);
@@ -84,6 +85,16 @@
             }
         })
 	}
+
+     function nextLevel(){
+         actualLevel ++;
+         $('#level').html(actualLevel);
+         $('#popup p').html(levels[actualLevel]['description']);
+         $("#popup").fadeIn(600);
+         $('#next-level').hide();
+         $('#level-start').show();
+         console.log ('lol');
+     }
 	
     function startGame(){
         newParty();
@@ -279,6 +290,8 @@
             $('#popup').fadeIn('');
             $('#popup p').html('Perdu');
             $('#popup img').attr('src','img/replay.png').attr('alt','replay-level');
+            $('#next-level').hide();
+            $('#level-start').show();
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -298,7 +311,8 @@
             endGame();
             $('#popup').fadeIn('');
             $('#popup p').html('Gagne');
-            $('#popup img').attr('src','img/lvl.png').attr('alt','next-level');
+            $('#level-start').hide();
+            $('#next-level').show();
         }
         else{
             $('#enemyHP').html(enemyHealthPoints);

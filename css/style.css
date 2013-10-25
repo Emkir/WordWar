@@ -313,6 +313,18 @@ body {
 
 }
 
+#next-level {
+    cursor: pointer;
+    margin: 0 auto;
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    width: 100px;
+    z-index: 100;
+}
+
 #CastleP {
 	background: url("../img/joueur_1.png");
 	width: 200px;
