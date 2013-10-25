@@ -34,7 +34,7 @@
         url: "./dictionary/wordsToArray.php",
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
-            $('#level-start').click(function(){startGame()});
+            $('#level-start').click(function(){console.log('toto');startGame()});
             $('#start').click(function(){start()});
         }
     });
@@ -106,10 +106,14 @@
     function newParty(){
         initHP();
         initHP('enemy');
-        generateWord(3,levels[actualLevel]['maxLetters']);
-        countRocket = 0;
-        newRocket();
-        newRocket('enemy');
+        console.log(healthPoints+' '+enemyHealthPoints);
+        setTimeout(function(){
+            console.log('FEU');
+            generateWord(3,levels[actualLevel]['maxLetters']);
+            countRocket = 0;
+            newRocket();
+            newRocket('enemy');
+        },4000);
     }
 
     function initHP(enemy){
@@ -222,7 +226,6 @@
         }
         else{
             enemyRocket[rocketKey]['time'] -= time;
-            console.log(rocketKey+':'+enemyRocket[rocketKey]['time']);
             $('#enemyTime').html(enemyRocket[rocketKey]['time']);
             if (enemyRocket[rocketKey]['time'] <= 0){
                 clearInterval(enemyTimer[rocketKey]);
@@ -249,9 +252,8 @@
             end=true;
             $('#playerHP').html(0);
             $('#popup').fadeIn('');
-            $('#popup p').html('Rejouer');
+            $('#popup p').html('Perdu');
             endGame();
-            newParty();
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -268,6 +270,8 @@
             $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
+            $('#popup').fadeIn('');
+            $('#popup p').html('Gagne');
             endGame();
         }
         else{
