@@ -146,13 +146,13 @@ body {
 	top: 130px;
 	left: 140px;
 }
-#contain-canonP img:first-child {
+#contain-canonP > img:first-child {
 	width: 100px;
 	position: absolute;
 	top: 0;
 	z-index: 9;
 }
-#contain-canonP img:nth-child(2) {
+#contain-canonP > img:nth-child(2) {
 	width: 100px;
 	position: absolute;
 	top: 8px;
@@ -164,6 +164,10 @@ body {
 	top: 19px;
 	z-index: 1;
 	width: 30px;
+	text-align: center;
+	font-family: "Bebas", sans-serif;
+	color: rgba(255,255,255,0.8);
+	font-size: 1em;
 }
 
 #ennemy {
@@ -171,6 +175,7 @@ body {
 	top: 300px;
 	right: 50px;
 	display: none;
+	z-index: 30;
 }
 #lifeE {
 	width: 150px;
@@ -217,13 +222,13 @@ body {
 	top: 130px;
 	right: 40px;
 }
-#contain-canonE img:first-child {
+#contain-canonE > img:first-child {
 	width: 100px;
 	position: absolute;
 	top: 0;
 	z-index: 9;
 }
-#contain-canonE img:nth-child(2) {
+#contain-canonE > img:nth-child(2) {
 	width: 100px;
 	position: absolute;
 	top: 8px;
@@ -235,6 +240,10 @@ body {
 	top: 19px;
 	z-index: 1;
 	width: 30px;
+	text-align: center;
+	font-family: "Bebas", sans-serif;
+	color: rgba(255,255,255,0.8);
+	font-size: 1em;
 }
 
 #word {
