@@ -23,8 +23,8 @@
     var actualCombo;
 
     var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'countRocket':1,'maxLetters':3,'description':'Ecrivez les mots magiques apparaissant à l’écran pour enchanter vos boulets de canon. Cela vous permettra de les rendre plus explosifs.'},
-                  2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'countRocket':2,'maxLetters':4,'description':'description2'},
-                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5000,'countRocket':2,'maxLetters':5,'description':'description3'}
+                  2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'countRocket':2,'maxLetters':4,'description':'Le château adverse a renforcé ses murs, deux boulets vont être nécessaires pour passer à travers le sortilège et détruire complètement leur fort.'},
+                  3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5000,'countRocket':2,'maxLetters':5,'description':'Nos ennemis ont amélioré leurs canons et tirent maintenant des boulets toutes les cinq secondes. Pour contrer leur stratégie, nos mages ont réussi à mettre au point un sort qui permet de faire exploser le boulet ennemi. Il nécessite de réussir cinq mots magiques d’affilée.'}
 
     };
     var actualLevel = 1;
