@@ -58,6 +58,31 @@
         $('#popup p').html(levels[actualLevel]['description']);
         $("#popup").fadeIn(600);
 
+        //On compare si le mot entré correspond au mot demandé
+        $(document).keypress(function(e){
+            if(e.which == 13 && end===false){ //si touche entrée pressée
+                console.log(actualCombo);
+                var inputWord = $('#wordField').val().toUpperCase();
+                $('#wordField').val("");
+                if(inputWord === word){
+                    console.log('bon');
+                    actualCombo ++;
+                    if(actualCombo % COMBO == 0 && typeof(levels[actualLevel]['betweenRockets'])!=='undefined'){
+                        console.log('combo');
+                        clearInterval(enemyTimer[firstRocket]);
+                        firstRocket += 1;
+                        newRocket('enemy');
+                        $('#bouletE').hide();
+                    }
+                    addRocketDamages(word.length);
+                    generateWord(3,levels[actualLevel]['maxLetters']);
+                }
+                else{
+                    actualCombo = 0;
+                    console.log('mauvais');
+                }
+            }
+        })
 	}
 	
     function startGame(){
@@ -90,32 +115,6 @@
         $('#wordField').bind('paste', function (e) {
             e.preventDefault();
         });
-
-        //On compare si le mot entré correspond au mot demandé
-        $(document).keypress(function(e){
-            if(e.which == 13 && end===false){ //si touche entrée pressée
-                console.log(actualCombo);
-                var inputWord = $('#wordField').val().toUpperCase();
-                $('#wordField').val("");
-                if(inputWord === word){
-                    console.log('bon');
-                    actualCombo ++;
-                    if(actualCombo % COMBO == 0 && typeof(levels[actualLevel]['betweenRockets'])!=='undefined'){
-                        console.log('combo');
-                        clearInterval(enemyTimer[firstRocket]);
-                        firstRocket += 1;
-                        newRocket('enemy');
-                        $('#bouletE').hide();
-                    }
-                    addRocketDamages(word.length);
-                    generateWord(3,levels[actualLevel]['maxLetters']);
-                }
-                else{
-                    actualCombo = 0;
-                    console.log('mauvais');
-                }
-            }
-        })
     }
 
     function newParty(){
