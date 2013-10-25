@@ -10,6 +10,7 @@
 
     var timeRemain;
     var enemyTimeRemain;
+    var betweenRockets;
 
     var timer;
     var enemyTimer;
@@ -71,9 +72,8 @@
                     if(actualCombo % COMBO == 0 && typeof(levels[actualLevel]['betweenRockets'])!=='undefined'){
                         console.log('combo');
                         clearInterval(enemyTimer[firstRocket]);
+                        $('#bouletE'+firstRocket).hide();
                         firstRocket += 1;
-                        newRocket('enemy');
-                        $('#bouletE').hide();
                     }
                     addRocketDamages(word.length);
                     generateWord(3,levels[actualLevel]['maxLetters']);
@@ -126,6 +126,7 @@
         countRocket = 0;
         enemyRocket = [];
         firstRocket = 0;
+        betweenRockets = [];
         $('#wordField').attr('readonly',null);
         $('#CastleP').css("background","url('./img/joueur_1.png')");
         $('#CastleE').css("background","url('./img/ennemi_1.png')");
@@ -191,7 +192,7 @@
             if(typeof(enemy)!=='undefined'){
                 enemyRocket.push({'damages':enemyRocketDamages,'time':enemyTimeRemain});
                 if(typeof(levels[actualLevel]['betweenRockets'])!=='undefined' && end==false){
-                    setTimeout(function(){newRocket('enemy')},levels[actualLevel]['betweenRockets'])
+                    betweenRockets[enemyRocket.length-1]=setTimeout(function(){newRocket('enemy')},levels[actualLevel]['betweenRockets'])
                 }
                 launchRocket(enemy,enemyRocket.length-1);
             }
@@ -227,7 +228,10 @@
             },1000);
         }
         else{
-        	$('#bouletE')
+            $('#boulets').append('<div id="bouletE'+rocketKey+'"><span class="enemyDamages"></span><img src="img/boulet.png"></div>');
+            $('.enemyDamages').html(enemyRocketDamages);
+            $('#bouletE'+rocketKey)
+            .transition({ x: 0, y: 0}, 0,'linear')
         	.transition({ x: -200, y: -100},((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
         	.transition({ x: -300, y: -130}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
         	.transition({ x: -370, y: -150}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
@@ -290,7 +294,7 @@
             $('#playerHP').html(0);
             endGame();
             $('#popup').fadeIn('');
-            $('#popup p').html('Perdu');
+            $('#popup p').html('Vous avez perdu');
             $('#popup img').attr('src','img/replay.png').attr('alt','replay-level');
             $('#next-level').hide();
             $('#level-start').show();
@@ -312,7 +316,7 @@
             $('#enemyHP').html(0);
             endGame();
             $('#popup').fadeIn('');
-            $('#popup p').html('Gagne');
+            $('#popup p').html('Vous avez gagné');
             $('#level-start').hide();
             $('#next-level').show();
         }
@@ -326,9 +330,15 @@
         for(i=0; i<enemyTimer.length;i++){
             clearInterval(enemyTimer[i]);
         }
+        if(typeof(levels[actualLevel]['betweenRockets'])!=='undefined'){
+            for(i=0; i<betweenRockets.length;i++){
+                clearInterval(betweenRockets[i]);
+            }
+        }
         word="";
         $('#word').html(word);
         $('#wordField').attr('readonly','readonly').val('');
+        $('#boulets').html('');
     }
 
  });
