@@ -67,7 +67,17 @@
         $("#wordField").fadeIn(600).css("display","block");
         $('#CastleP').transition({ x: '-800px' }, 3800,'ease');
         $('#CastleE').transition({ x: '-400px' }, 3800,'ease');
-        $('#bouletP').transition({ x: -40 }).transition({ y: 40 }).transition({ x: 0 }).transition({ y: 0 });
+        $('#bouletP')
+        	.transition({ x: 150, y: -100, duration: 2750, delay: 4000})
+        	.transition({ x: 200, y: -170, duration: 2750})
+        	.transition({ x: 350, y: -100, duration: 2750})
+        	.transition({ x: 450, y: 0, duration: 2750});
+        	
+        $('#bouletE')
+        	.transition({ x: 450, y: -100, duration: 2750, delay: 4000})
+        	.transition({ x: 350, y: -170, duration: 2750})
+        	.transition({ x: 200, y: -100, duration: 2750})
+        	.transition({ x: 150, y: 0, duration: 2750});
 
         //On focus sur le champ input
         $("#wordField").focus().val("");
