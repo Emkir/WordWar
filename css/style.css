@@ -58,6 +58,13 @@ table {
 body {
 	background: url("../img/debut_dark.png");
 }
+#timeBack {
+	height: 0%;
+	width: 100%;
+	background: rgba(255,0,0,0.5);
+	position: absolute;
+	bottom: 0;
+}
 #logo {
 	width: 400px;
 	margin: 0 auto;
@@ -90,13 +97,12 @@ body {
 	z-index: 9;
 	height: 450px;
 	width: 800px;
-	margin: 200px auto;
+	margin: 200px auto 100px auto;
 	border-radius: 5px;
-	background: url("../img/fond.png") repeat-x;
+	background: url("../img/fond2.png") repeat-x;
 	box-shadow: 0px 10px 20px rgba(0,0,0,0.7);
 	overflow: hidden;
 }
-
 #player {
 	background: red;
 	position: absolute;
@@ -245,5 +251,5 @@ body {
 	height: 200px;
 	position: absolute;
 	bottom: 20px;
-	left: 1600px;
+	left: 1000px;
 }

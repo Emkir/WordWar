@@ -39,8 +39,18 @@
         }
     });
     
-    $("#game-content").animate({"backgroundPosition":'-1800px 0px'},3800,'linear');
-
+	$("#level-start").click(function(){
+	
+	    var $this = $(this);
+	    
+	    if($this.data('clicked')) {
+	        $("#game-content").animate({"backgroundPosition":'-800px 0px'},3800);
+	    }
+	    else {
+	        $("#game-content").animate({"backgroundPosition":'-800px 0px'},3800);
+	    }
+	});
+	
 	function start() {
 		$("#start").fadeOut(600);
         $("#logo").fadeIn(600).css("top","20px");
@@ -55,8 +65,8 @@
         $("#ennemy").fadeIn(600).css("display","block");
         $("#word").fadeIn(600).css("display","block");
         $("#wordField").fadeIn(600).css("display","block");
-        $('#CastleP').transition({ x: '-800px' }, 1800);
-        $('#CastleE').transition({ x: '-1000px' }, 1800);
+        $('#CastleP').transition({ x: '-800px' }, 3800,'ease');
+        $('#CastleE').transition({ x: '-400px' }, 3800,'ease');
 
         //On focus sur le champ input
         $("#wordField").focus().val("");
@@ -212,7 +222,7 @@
         }
         else{
             enemyRocket[rocketKey]['time'] -= time;
-            console.log(rocketKey+':'+enemyRocket[rocketKey]['time']);
+            $('#timeBack').css("height",enemyRocket[rocketKey]['time']+"%");
             $('#enemyTime').html(enemyRocket[rocketKey]['time']);
             if (enemyRocket[rocketKey]['time'] <= 0){
                 clearInterval(enemyTimer[rocketKey]);
@@ -237,9 +247,6 @@
             $('#playerHP').html(0);
             endGame();
         }
-        else if (healthPoints <= 50){
-            $('#CastleP').css("background","url('./img/joueur_2.png')");
-        }
         else{
             $('#playerHP').html(healthPoints);
         }
@@ -253,9 +260,6 @@
             end=true;
             $('#enemyHP').html(0);
             endGame();
-        }
-        else if (enemyHealthPoints <= 50){
-            $('#CastleE').css("background","url('./img/ennemi_2.png')");
         }
         else{
             $('#enemyHP').html(enemyHealthPoints);
