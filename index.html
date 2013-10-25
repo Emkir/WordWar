@@ -20,7 +20,8 @@
 	
 	<body>
 		<img src="img/logo.png" alt="logo" id="logo">
-		<div id="timeBack"></div>
+<!-- 		<input class="playerTime"> -->
+		
 		<div id="game-content">
 		
 			<span id="start"></span>
@@ -29,7 +30,6 @@
 				<div id="lifeP">
 					<div id="fillP"></div>
 				</div>
-<!-- 		        <input class="playerTime"> -->
 <!-- 		        Dégats missile:<span id="playerDamages"></span> -->
 			</div>
 			
@@ -37,7 +37,7 @@
 				<div id="lifeE">
 					<div id="fillE"></div>
 				</div>
-		        Temps missile:<span id="enemyTime" data-min="0" data-max="30"></span><br>
+<!-- 		        Temps missile:<span id="enemyTime" data-min="0" data-max="30"></span><br> -->
 <!-- 		        Dégats missile:<span id="enemyDamages"></span> -->
 			</div>
 			
@@ -47,13 +47,29 @@
 				<img src="img/start.png" id="level-start">
 			</div>
 			
-			<div id="CastleP"></div>
-			<div id="CastleE"></div>
+			<div id="CastleP">
+				<div id="contain-canonP">
+					<img src="img/canon_joueur.png">
+					<img src="img/roue_joueur.png">
+					<img src="img/boulet.png" id="bouletP">
+				</div>
+			</div>
+			<div id="CastleE">
+				<div id="contain-canonE">
+					<img src="img/canon_ennemi.png">
+					<img src="img/roue_ennemi.png">
+					<img src="img/boulet.png">
+				</div>
+			</div>
 	
 	        <h2 id="word"></h2>
-	        <input type="text" id="wordField">
+	        
 		</div>
+		
+		<input type="text" id="wordField">
 
 	</body>
 	
 </html>
+
+

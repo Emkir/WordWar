@@ -58,13 +58,6 @@ table {
 body {
 	background: url("../img/debut_dark.png");
 }
-#timeBack {
-	height: 0%;
-	width: 100%;
-	background: rgba(255,0,0,0.5);
-	position: absolute;
-	bottom: 0;
-}
 #logo {
 	width: 400px;
 	margin: 0 auto;
@@ -104,7 +97,6 @@ body {
 	overflow: hidden;
 }
 #player {
-	background: red;
 	position: absolute;
 	top: 300px;
 	left: 50px;
@@ -137,9 +129,34 @@ body {
 	font-family: "Bebas",sans-serif;
 	font-size: 2.5em;
 }
+#contain-canonP {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	z-index: 40;
+	top: 130px;
+	left: 140px;
+}
+#contain-canonP img:first-child {
+	width: 100px;
+	position: absolute;
+	top: 0;
+	z-index: 9;
+}
+#contain-canonP img:nth-child(2) {
+	width: 100px;
+	position: absolute;
+	top: 8px;
+	z-index: 10;
+}
+#contain-canonP img:last-child {
+	position: absolute;
+	left: 40px;
+	top: 19px;
+	z-index: 1;
+}
 
 #ennemy {
-	background: blue;
 	position: absolute;
 	top: 300px;
 	right: 50px;
@@ -172,6 +189,30 @@ body {
 	line-height: 40px;
 	font-family: "Bebas",sans-serif;
 	font-size: 2.5em;
+}
+#contain-canonE {
+	position: relative;
+	width: 100px;
+	height: 100px;
+	z-index: 40;
+	top: 130px;
+	right: 40px;
+}
+#contain-canonE img:first-child {
+	width: 100px;
+	position: absolute;
+	top: 0;
+}
+#contain-canonE img:nth-child(2) {
+	width: 100px;
+	position: absolute;
+	top: 8px;
+}
+#contain-canonE img:last-child {
+	position: absolute;
+	right: 40px;
+	top: 19px;
+	z-index: 1;
 }
 
 #word {
