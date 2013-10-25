@@ -86,7 +86,6 @@
                     console.log('bon');
                     actualCombo ++;
                     if(actualCombo % COMBO == 0){
-                        console.log('toto');
                         clearInterval(enemyTimer[firstRocket]);
                         firstRocket += 1;
                         newRocket('enemy');
