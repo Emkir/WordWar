@@ -86,7 +86,7 @@
         })
 	}
 
-     function nextLevel(){
+    function nextLevel(){
          actualLevel ++;
          $('#level').html(actualLevel);
          $('#popup p').html(levels[actualLevel]['description']);
@@ -106,19 +106,8 @@
         $("#wordField").fadeIn(600).css("display","block");
         $('#CastleP').transition({ x: '-800px' }, 3800,'ease');
         $('#CastleE').transition({ x: '-400px' }, 3800,'ease');
-        $('#bouletP')
-        	.transition({ x: 200, y: -100, delay: 4000},((levels[actualLevel]['timeRocket']*1000)/3.5),'linear')
-        	.transition({ x: 300, y: -130}, ((levels[actualLevel]['timeRocket']*1000)/3.5),'linear')
-        	.transition({ x: 370, y: -150}, ((levels[actualLevel]['timeRocket']*1000)/3.5),'linear')
-        	.transition({ x: 500, y: 0}, ((levels[actualLevel]['timeRocket']*1000)/3.5),'linear')
-        	.transition({ x: 0, y: 0}, 0,'linear');
         	
-        $('#bouletE')
-        	.transition({ x: -200, y: -100, delay: 4000},((levels[actualLevel]['enemyTimeRocket']*1000)/3.5),'linear')
-        	.transition({ x: -300, y: -130}, ((levels[actualLevel]['enemyTimeRocket']*1000)/3.5),'linear')
-        	.transition({ x: -370, y: -150}, ((levels[actualLevel]['enemyTimeRocket']*1000)/3.5),'linear')
-        	.transition({ x: -500, y: 0}, ((levels[actualLevel]['enemyTimeRocket']*1000)/3.5),'linear')
-        	.transition({ x: 0, y: 0}, 0,'linear');
+        
 
         //On focus sur le champ input
         $("#wordField").focus().val("");
@@ -226,11 +215,24 @@
     function launchRocket(enemy,rocketKey){
         if(typeof(enemy)==='undefined'){
             countRocket += 1;
+            $('#bouletP')
+        	.transition({ x: 200, y: -100},((levels[actualLevel]['timeRocket']*1000)/4),'linear')
+        	.transition({ x: 300, y: -130}, ((levels[actualLevel]['timeRocket']*1000)/4),'linear')
+        	.transition({ x: 370, y: -150}, ((levels[actualLevel]['timeRocket']*1000)/4),'linear')
+        	.transition({ x: 500, y: 0}, ((levels[actualLevel]['timeRocket']*1000)/4),'linear')
+        	.transition({ x: 0, y: 0}, 0,'linear');
+
             timer = setInterval (function(){
                 soustractTime(1);
             },1000);
         }
         else{
+        	$('#bouletE')
+        	.transition({ x: -200, y: -100},((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
+        	.transition({ x: -300, y: -130}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
+        	.transition({ x: -370, y: -150}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
+        	.transition({ x: -500, y: 0}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
+        	.transition({ x: 0, y: 0}, 0,'linear');
             enemyTimer[rocketKey] = setInterval (function(){
                 soustractTime(1,enemy,rocketKey);
             },1000);

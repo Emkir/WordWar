@@ -96,6 +96,7 @@ body {
 	box-shadow: 0px 10px 20px rgba(0,0,0,0.7);
 	overflow: hidden;
 }
+
 #player {
 	position: absolute;
 	top: 300px;
@@ -156,13 +157,13 @@ body {
 	width: 100px;
 	position: absolute;
 	top: 8px;
-	z-index: 10;
+	z-index: 60;
 }
 #bouletP {
 	position: absolute;
 	left: 40px;
 	top: 19px;
-	z-index: 1;
+	z-index: 10;
 	width: 30px;
 	text-align: center;
 	font-family: "Bebas", sans-serif;
@@ -238,7 +239,7 @@ body {
 	position: absolute;
 	right: 40px;
 	top: 19px;
-	z-index: 1;
+	z-index: 10;
 	width: 30px;
 	text-align: center;
 	font-family: "Bebas", sans-serif;
@@ -332,7 +333,8 @@ body {
 	position: absolute;
 	bottom: 20px;
 	left: 800px;
-	z-index: 30;
+	z-index: -10;
+
 }
 #CastleE {
 	background: url("../img/ennemi_1.png");
@@ -341,4 +343,5 @@ body {
 	position: absolute;
 	bottom: 20px;
 	left: 1000px;
+	z-index: -10;
 }
