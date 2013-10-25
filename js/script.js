@@ -98,10 +98,11 @@
                     console.log('bon');
                     actualCombo ++;
                     if(actualCombo % COMBO == 0){
+                        console.log('combo');
                         clearInterval(enemyTimer[firstRocket]);
                         firstRocket += 1;
                         newRocket('enemy');
-                        //effacer le boulet de l'affichage
+                        $('#bouletE').hide();
                     }
                     addRocketDamages(word.length);
                     generateWord(3,levels[actualLevel]['maxLetters']);
@@ -121,6 +122,7 @@
         countRocket = 0;
         enemyRocket = [];
         firstRocket = 0;
+        $('#wordField').attr('readonly',null);
         $('#CastleP').css("background","url('./img/joueur_1.png')");
         $('#CastleE').css("background","url('./img/ennemi_1.png')");
         initHP();
