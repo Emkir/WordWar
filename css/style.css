@@ -263,23 +263,27 @@ body {
 	margin: 0 auto;
 	left: 0;
 	right: 0;
-	bottom: 40px;
+	bottom: 20px;
 	height: 40px;
 	font-size: 1.2em;
 	text-align: center;
 	width: 35%;
-    text-transform:uppercase;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.4);
 }
+#wordField:focus {
+	
+} 
 
 #popup {
 	width: 60%;
-	height: 300px;
+	height: 200px;
 	background: rgba(255,255,255,0.9);
 	margin: 0 auto;
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 80px;
+	top: 100px;
 	border-radius: 5px;
 	display: none;
 }

@@ -298,6 +298,7 @@
             endGame();
             $('#popup').fadeIn('');
             $('#popup p').html('Gagne');
+            $('#popup img').attr('src','img/lvl.png').attr('alt','next-level');
         }
         else{
             $('#enemyHP').html(enemyHealthPoints);
