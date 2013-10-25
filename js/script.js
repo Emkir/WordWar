@@ -35,7 +35,7 @@
         success: function(msg){
             wordsObject = jQuery.parseJSON(msg);
             $('#level-start').click(function(){startGame()});
-            $('#start').click(function(){start()});
+            $('#start').show().click(function(){start()});
         }
     });
     
@@ -55,6 +55,7 @@
 		$("#start").fadeOut(600);
         $("#logo").fadeIn(600).css("top","20px");
         $("#popup").fadeIn(600);
+
 	}
 	
     function startGame(){
@@ -116,6 +117,8 @@
     function newParty(){
         initHP();
         initHP('enemy');
+        $('#fillP').css("width",healthPoints+"%");
+        $('#fillE').css("width",enemyHealthPoints+"%");
         setTimeout(function(){
             generateWord(3,levels[actualLevel]['maxLetters']);
             countRocket = 0;
