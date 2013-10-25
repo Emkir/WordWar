@@ -67,6 +67,7 @@
         $("#wordField").fadeIn(600).css("display","block");
         $('#CastleP').transition({ x: '-800px' }, 3800,'ease');
         $('#CastleE').transition({ x: '-400px' }, 3800,'ease');
+        $('#bouletP').transition({ x: -40 }).transition({ y: 40 }).transition({ x: 0 }).transition({ y: 0 });
 
         //On focus sur le champ input
         $("#wordField").focus().val("");
@@ -222,7 +223,7 @@
         }
         else{
             enemyRocket[rocketKey]['time'] -= time;
-            $('#timeBack').css("height",enemyRocket[rocketKey]['time']+"%");
+            console.log(rocketKey+':'+enemyRocket[rocketKey]['time']);
             $('#enemyTime').html(enemyRocket[rocketKey]['time']);
             if (enemyRocket[rocketKey]['time'] <= 0){
                 clearInterval(enemyTimer[rocketKey]);
@@ -241,11 +242,17 @@
     function getDamages(hp,enemyRocketDamages){
         healthPoints = hp - enemyRocketDamages;
         $('#fillP').css("width",healthPoints+"%");
+        if (healthPoints <= 50){
+	        $('#CastleP').css("background","url('./img/joueur_2.png')");
+        }
         if(healthPoints <= 0){
             $('#CastleP').css("background","url('./img/joueur_3.png')");
             end=true;
             $('#playerHP').html(0);
+            $('#popup').fadeIn('');
+            $('#popup p').html('Rejouer');
             endGame();
+            newParty();
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -255,6 +262,9 @@
     function makeDamages(enemyHP, rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
+        if(enemyHealthPoints <= 50){
+	         $('#CastleE').css("background","url('./img/ennemi_2.png')");
+        }
         if(enemyHealthPoints <= 0){
             $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
