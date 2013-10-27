@@ -92,7 +92,7 @@
          $('#popup p').html(levels[actualLevel]['description']);
          $("#popup").fadeIn(600);
          $('#next-level').hide();
-         $('#level-start').show();
+         $('#level-start').attr('src','img/start.png').attr('alt','start-level').show();
          console.log ('lol');
      }
 	
@@ -134,6 +134,10 @@
         initHP('enemy');
         $('#fillP').css("width",healthPoints+"%");
         $('#fillE').css("width",enemyHealthPoints+"%");
+        $('#countRocket').html('');
+        for (i=1; i<=levels[actualLevel]['countRocket']; i++){
+            $('#countRocket').append('<img src="img/bouletE.png" alt="boulet">');
+        }
         setTimeout(function(){
             generateWord(3,levels[actualLevel]['maxLetters']);
             newRocket();
@@ -215,6 +219,7 @@
     //defilement du temps restant
     function launchRocket(enemy,rocketKey){
         if(typeof(enemy)==='undefined'){
+            $('img:last-child', '#countRocket').remove();
             countRocket += 1;
             $('#bouletP')
         	.transition({ x: 200, y: -100},((levels[actualLevel]['timeRocket']*1000)/4),'linear')
@@ -295,9 +300,8 @@
             endGame();
             $('#popup').fadeIn('');
             $('#popup p').html('Vous avez perdu');
-            $('#popup img').attr('src','img/replay.png').attr('alt','replay-level');
             $('#next-level').hide();
-            $('#level-start').show();
+            $('#level-start').attr('src','img/replay.png').attr('alt','replay-level').show();
         }
         else{
             $('#playerHP').html(healthPoints);
@@ -318,7 +322,9 @@
             $('#popup').fadeIn('');
             $('#popup p').html('Vous avez gagné');
             $('#level-start').hide();
-            $('#next-level').show();
+            if (typeof(levels[actualLevel+1])!=='undefined'){
+                $('#next-level').show();
+            }
         }
         else{
             $('#enemyHP').html(enemyHealthPoints);
