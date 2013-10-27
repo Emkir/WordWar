@@ -312,7 +312,7 @@
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
         if(enemyHealthPoints <= 50){
-	         $('#CastleE').css("background","url('./img/ennemi_2.png')");
+        	$('#CastleE').css("background","url('./img/ennemi_2.png')");
         }
         if(enemyHealthPoints <= 0){
             $('#CastleE').css("background","url('./img/ennemi_3.png')");
