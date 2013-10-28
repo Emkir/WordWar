@@ -52,7 +52,7 @@
 	    }
 	});
 	
-	document.getElementById("musique").play();
+/* 	document.getElementById("musique").play(); */
 	
 	function start(){
 		$("#start").fadeOut(600);
@@ -63,7 +63,7 @@
 
         //On compare si le mot entré correspond au mot demandé
         $(document).keypress(function(e){
-            if(e.which == 13 && end===false){ //si touche entrée pressée
+            if(e.which == 13 && end === false){ //si touche entrée pressée
                 console.log(actualCombo);
                 var inputWord = $('#wordField').val().toUpperCase();
                 $('#wordField').val("");
@@ -230,6 +230,7 @@
         	.transition({ x: 370, y: -150}, ((levels[actualLevel]['timeRocket']*1000)/4),'linear')
         	.transition({ x: 500, y: 0}, ((levels[actualLevel]['timeRocket']*1000)/4),'linear')
         	.transition({ x: 0, y: 0}, 0,'linear');
+        	$('#bouletP img').css('width','30px');
 
             timer = setInterval (function(){
                 soustractTime(1);
@@ -240,7 +241,6 @@
             $('.enemyDamages').html(enemyRocketDamages);
             document.getElementById("boom").play();
             $('#bouletE'+rocketKey)
-            .transition({ x: 0, y: 0}, 0,'linear')
         	.transition({ x: -200, y: -100},((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
         	.transition({ x: -300, y: -130}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
         	.transition({ x: -370, y: -150}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
@@ -290,6 +290,7 @@
     function addRocketDamages(damages){
         rocketDamages += damages;
         $('#playerDamages').html(rocketDamages);
+        $('#bouletP img').css('width','+=5');
     }
 
     function getDamages(hp,enemyRocketDamages){
@@ -326,6 +327,7 @@
         }
         if(enemyHealthPoints <= 0){
         	document.getElementById("boom1").play();
+        	$('#bouletP img').css('width','30px');
             $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);

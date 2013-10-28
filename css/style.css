@@ -170,6 +170,11 @@ body {
 	color: rgba(255,255,255,0.8);
 	font-size: 1em;
 }
+#bouletP img {
+	-webkit-transition: 500ms ease;
+	-moz-transition: 500ms ease;
+	transition: 500ms ease;
+}
 #fumeeP {
 	position: absolute;
 	width: 280px;
