@@ -82,7 +82,7 @@
                 }
                 else{
                     actualCombo = 0;
-                    $('#wordField').css('box-shadow','0px 0px 20px #ff0000');
+                    $('#wordField').css('box-shadow','0px 0px 20px #FF0000');
                     console.log('mauvais');
                 }
             }
