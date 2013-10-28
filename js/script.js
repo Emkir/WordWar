@@ -68,6 +68,7 @@
                 var inputWord = $('#wordField').val().toUpperCase();
                 $('#wordField').val("");
                 if(inputWord === word){
+                	$('#wordField').css('box-shadow','0px 0px 20px #00FF00');
                     console.log('bon');
                     actualCombo ++;
                     if(actualCombo % COMBO == 0 && typeof(levels[actualLevel]['betweenRockets'])!=='undefined'){
