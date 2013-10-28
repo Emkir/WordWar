@@ -170,6 +170,13 @@ body {
 	color: rgba(255,255,255,0.8);
 	font-size: 1em;
 }
+#fumeeP {
+	position: absolute;
+	width: 280px;
+	bottom: -20px;
+	left: -20px;
+	display: none;
+}
 
 #ennemy {
 	position: absolute;
@@ -246,6 +253,13 @@ body {
 	color: rgba(255,255,255,0.8);
 	font-size: 1em;
 }
+#fumeeE {
+	position: absolute;
+	width: 280px;
+	bottom: -20px;
+	right: -35px;
+	display: none;
+}
 
 #word {
 	display: none;
@@ -271,10 +285,11 @@ body {
 	width: 35%;
     text-transform: uppercase;
     background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0);
 }
 #wordField:focus {
 	outline: none;
-} 
+}
 
 #popup {
 	width: 60%;

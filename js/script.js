@@ -26,7 +26,6 @@
     var levels = {1:{'damages':91,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':11,'countRocket':1,'maxLetters':3,'description':'Bienvenue commandant, protégez votre château contre l’ennemi en le détruisant en premier avec vos canons.<br>Ecrivez les mots magiques apparaissant à l’écran pour enchanter vos boulets de canon. Cela vous permettra de les rendre plus explosifs.'},
                   2:{'damages':40,'enemyDamages':100,'timeRocket':10,'enemyTimeRocket':21,'countRocket':2,'maxLetters':4,'description':'Le château adverse a renforcé ses murs, deux boulets vont être nécessaires pour passer à travers le sortilège et détruire complètement leur fort.'},
                   3:{'damages':30,'enemyDamages':40,'timeRocket':15,'enemyTimeRocket':15,'betweenRockets':5000,'countRocket':2,'maxLetters':5,'description':'Nos ennemis ont amélioré leurs canons et tirent maintenant des boulets toutes les cinq secondes. Pour contrer leur stratégie, nos mages ont réussi à mettre au point un sort qui permet de faire exploser le boulet ennemi. Il nécessite de réussir cinq mots magiques d’affilée.'}
-
     };
     var actualLevel = 1;
 
@@ -53,7 +52,9 @@
 	    }
 	});
 	
-	function start() {
+	document.getElementById("musique").play();
+	
+	function start(){
 		$("#start").fadeOut(600);
         $("#logo").fadeIn(600).css("top","20px");
         $('#level').html(actualLevel);
@@ -77,9 +78,11 @@
                     }
                     addRocketDamages(word.length);
                     generateWord(3,levels[actualLevel]['maxLetters']);
+                    $('#wordField').css('box-shadow','0px 0px 0px #000');
                 }
                 else{
                     actualCombo = 0;
+                    $('#wordField').css('box-shadow','0px 0px 20px #ff0000');
                     console.log('mauvais');
                 }
             }
@@ -98,7 +101,7 @@
 	
     function startGame(){
         newParty();
-        
+       
         $("#popup").fadeOut(600);
         $("#player").fadeIn(600).css("display","block");
         $("#ennemy").fadeIn(600).css("display","block");
@@ -106,8 +109,6 @@
         $("#wordField").fadeIn(600).css("display","block");
         $('#CastleP').transition({ x: '-800px' }, 3800,'ease');
         $('#CastleE').transition({ x: '-400px' }, 3800,'ease');
-        	
-        
 
         //On focus sur le champ input
         $("#wordField").focus().val("");
@@ -130,6 +131,7 @@
         $('#wordField').attr('readonly',null);
         $('#CastleP').css("background","url('./img/joueur_1.png')");
         $('#CastleE').css("background","url('./img/ennemi_1.png')");
+        $('#wordField').css('box-shadow','0px 0px 0px #000');
         initHP();
         initHP('enemy');
         $('#fillP').css("width",healthPoints+"%");
@@ -221,6 +223,7 @@
         if(typeof(enemy)==='undefined'){
             $('img:last-child', '#countRocket').remove();
             countRocket += 1;
+            document.getElementById("boom").play();
             $('#bouletP')
         	.transition({ x: 200, y: -100},((levels[actualLevel]['timeRocket']*1000)/4),'linear')
         	.transition({ x: 300, y: -130}, ((levels[actualLevel]['timeRocket']*1000)/4),'linear')
@@ -235,6 +238,7 @@
         else{
             $('#boulets').append('<div id="bouletE'+rocketKey+'"><span class="enemyDamages"></span><img src="img/boulet.png"></div>');
             $('.enemyDamages').html(enemyRocketDamages);
+            document.getElementById("boom").play();
             $('#bouletE'+rocketKey)
             .transition({ x: 0, y: 0}, 0,'linear')
         	.transition({ x: -200, y: -100},((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
@@ -242,6 +246,7 @@
         	.transition({ x: -370, y: -150}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
         	.transition({ x: -500, y: 0}, ((levels[actualLevel]['enemyTimeRocket']*1000)/4),'linear')
         	.transition({ x: 0, y: 0}, 0,'linear');
+        	
             enemyTimer[rocketKey] = setInterval (function(){
                 soustractTime(1,enemy,rocketKey);
             },1000);
@@ -291,9 +296,12 @@
         healthPoints = hp - enemyRocketDamages;
         $('#fillP').css("width",healthPoints+"%");
         if (healthPoints <= 50){
+        	document.getElementById("boom1").play();
+        	$("#fumeeP").fadeIn(200).fadeOut(500);
 	        $('#CastleP').css("background","url('./img/joueur_2.png')");
         }
         if(healthPoints <= 0){
+        	document.getElementById("boom1").play();
             $('#CastleP').css("background","url('./img/joueur_3.png')");
             end=true;
             $('#playerHP').html(0);
@@ -308,13 +316,16 @@
         }
     }
 
-    function makeDamages(enemyHP, rocketDamages){
+    function makeDamages(enemyHP,rocketDamages){
         enemyHealthPoints = enemyHP - rocketDamages;
         $('#fillE').css("width",enemyHealthPoints+"%");
         if(enemyHealthPoints <= 50){
+        	document.getElementById("boom1").play();
+        	$("#fumeeE").fadeIn(200).fadeOut(500);
         	$('#CastleE').css("background","url('./img/ennemi_2.png')");
         }
         if(enemyHealthPoints <= 0){
+        	document.getElementById("boom1").play();
             $('#CastleE').css("background","url('./img/ennemi_3.png')");
             end=true;
             $('#enemyHP').html(0);
