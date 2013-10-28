@@ -79,7 +79,6 @@
                     }
                     addRocketDamages(word.length);
                     generateWord(3,levels[actualLevel]['maxLetters']);
-                    $('#wordField').css('box-shadow','0px 0px 0px #000');
                 }
                 else{
                     actualCombo = 0;
